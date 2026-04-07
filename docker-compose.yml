@@ -1,0 +1,34 @@
+version: "3.9"
+
+services:
+  trading-bot:
+    build: .
+    container_name: ohlc-prob-bot
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      # ── Required ──────────────────────────────────────────────────────────
+      - T212_API_KEY=${T212_API_KEY}
+      # ── Environment: "demo" (paper) or "live" (real money) ───────────────
+      - T212_ENV=${T212_ENV:-demo}
+      # ── Strategy settings (edit or override in .env) ──────────────────────
+      - SYMBOLS=${SYMBOLS:-AMC,AAPL}
+      - RISK_PCT=${RISK_PCT:-0.01}
+      - ATR_MULT=${ATR_MULT:-1.5}
+      - RR_RATIO=${RR_RATIO:-2.0}
+      - THRESHOLD=${THRESHOLD:-0.60}
+      - MIN_SAMPLES=${MIN_SAMPLES:-20}
+      - EMA_PERIOD=${EMA_PERIOD:-200}
+      - USE_EMA_FILTER=${USE_EMA_FILTER:-true}
+      - USE_TIME_FILTER=${USE_TIME_FILTER:-true}
+      - TRADE_DIR=${TRADE_DIR:-Both}
+      - POLL_SECONDS=${POLL_SECONDS:-900}
+    volumes:
+      # Persist logs outside the container
+      - ./logs:/app/logs
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/status"]
+      interval: 30s
+      timeout: 10s
+      retries: 3

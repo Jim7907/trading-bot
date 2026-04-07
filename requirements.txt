@@ -1,0 +1,8 @@
+fastapi==0.115.0
+uvicorn[standard]==0.30.6
+python-dotenv==1.0.1
+requests==2.32.3
+yfinance==0.2.43
+numpy==1.26.4
+pandas==2.2.2
+websockets==12.0
