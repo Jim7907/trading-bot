@@ -1,6 +1,7 @@
 """Trading 212 REST API client."""
 
 import time
+import base64
 import logging
 import requests
 
@@ -8,10 +9,19 @@ log = logging.getLogger("t212")
 
 
 class T212Client:
-    def __init__(self, api_key: str, base_url: str):
+    def __init__(self, api_key: str, base_url: str, api_secret: str = ""):
+        # Build Authorization header:
+        # - If both key + secret supplied: Basic base64(key:secret)
+        # - Otherwise: just the API key directly
+        if api_secret:
+            token = base64.b64encode(f"{api_key}:{api_secret}".encode()).decode()
+            auth_header = f"Basic {token}"
+        else:
+            auth_header = api_key
+
         self.session = requests.Session()
         self.session.headers.update({
-            "Authorization": api_key,
+            "Authorization": auth_header,
             "Content-Type":  "application/json",
         })
         self.base = base_url

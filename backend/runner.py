@@ -10,7 +10,7 @@ from datetime import datetime, timezone, timedelta
 from collections import deque
 
 from config import (
-    T212_API_KEY, BASE_URL, SYMBOLS, RISK_PCT, POLL_SECONDS, USE_TIME,
+    T212_API_KEY, T212_API_SECRET, BASE_URL, SYMBOLS, RISK_PCT, POLL_SECONDS, USE_TIME,
 )
 from strategy import ProbabilityEngine, fetch_bars, generate_signal, is_eod
 from t212 import T212Client
@@ -70,7 +70,7 @@ class BotRunner:
 
     def _loop(self):
         try:
-            self.client = T212Client(T212_API_KEY, BASE_URL)
+            self.client = T212Client(T212_API_KEY, BASE_URL, T212_API_SECRET)
             info = self.client.get_account_info()
             self.account_info = info
             self._log(f"Connected: {info.get('id')} ({info.get('currencyCode')})")

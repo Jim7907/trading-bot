@@ -2,8 +2,9 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-T212_API_KEY   = os.getenv("T212_API_KEY", "")
-T212_ENV       = os.getenv("T212_ENV", "demo").lower()
+T212_API_KEY    = os.getenv("T212_API_KEY", "")
+T212_API_SECRET = os.getenv("T212_API_SECRET", "")
+T212_ENV        = os.getenv("T212_ENV", "demo").lower()
 SYMBOLS        = [s.strip().upper() for s in os.getenv("SYMBOLS", "AMC,AAPL").split(",")]
 RISK_PCT       = float(os.getenv("RISK_PCT",    "0.01"))
 ATR_MULT       = float(os.getenv("ATR_MULT",    "1.5"))
