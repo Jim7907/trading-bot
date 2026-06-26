@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Good sleep score. Still exhausted? — Energy OS, from the makers of Levoit</title>
+<meta name="description" content="You already trusted VeSync with the air in the room you sleep in. Energy OS is the next layer — a sleep system, years in the making, that reads the night your body actually had and turns it into one clear move for the day in front of you." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:        #eef0f7;
+    --bg-tint:   #f6f5fa;
+    --ink:       #182338;
+    --ink-soft:  #2f3c54;
+    --slate:     #5a6477;
+    --muted:     #8089a0;
+    --accent:    #c46a2b;
+    --accent-2:  #df8a45;
+    --line:      rgba(24,35,56,.10);
+    --line-2:    rgba(24,35,56,.06);
+    --card:      #ffffff;
+    --shadow:    0 18px 50px -28px rgba(24,35,56,.45);
+    --shadow-sm: 0 8px 24px -16px rgba(24,35,56,.40);
+    --maxw:      1180px;
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{
+    background:
+      radial-gradient(1200px 700px at 80% -10%, #fbf3ea 0%, rgba(251,243,234,0) 55%),
+      radial-gradient(900px 600px at -10% 10%, #eaecf6 0%, rgba(234,236,246,0) 50%),
+      var(--bg);
+    color:var(--ink);
+    font-family:'Inter', system-ui, -apple-system, sans-serif;
+    font-size:17px; line-height:1.65; -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 26px; }
+  .serif{ font-family:'Fraunces', Georgia, serif; }
+  .em{ font-family:'Fraunces', Georgia, serif; font-style:italic; color:var(--accent); }
+  .eyebrow{
+    font-size:12.5px; font-weight:600; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--accent); display:inline-flex; align-items:center; gap:9px;
+  }
+  .eyebrow.slate{ color:#7a849c; }
+  .eyebrow::before{ content:""; width:24px; height:1.5px; background:currentColor; opacity:.6; display:inline-block; }
+  a{ color:inherit; text-decoration:none; }
+
+  /* ── Nav ── */
+  nav{
+    position:sticky; top:0; z-index:50;
+    backdrop-filter:saturate(140%) blur(12px);
+    background:rgba(238,240,247,.72);
+    border-bottom:1px solid transparent;
+    transition:border-color .3s, background .3s;
+  }
+  nav.scrolled{ border-color:var(--line); background:rgba(238,240,247,.86); }
+  .nav-inner{ display:flex; align-items:center; gap:30px; height:70px; }
+  .brand{ font-family:'Fraunces',serif; font-weight:600; font-size:20px; letter-spacing:.3px; display:flex; align-items:center; gap:10px; }
+  .brand .mark{ width:11px; height:11px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 4px rgba(196,106,43,.16); }
+  .nav-links{ display:flex; gap:26px; margin-left:auto; }
+  .nav-links a{ font-size:14.5px; font-weight:500; color:var(--ink-soft); opacity:.82; transition:opacity .2s; }
+  .nav-links a:hover{ opacity:1; }
+  .nav-cta{
+    font-size:14px; font-weight:600; color:#fff; background:var(--ink);
+    padding:10px 20px; border-radius:100px; transition:transform .2s, background .2s;
+  }
+  .nav-cta:hover{ background:#0f1726; transform:translateY(-1px); }
+  @media(max-width:820px){ .nav-links{ display:none; } }
+
+  /* ── Buttons ── */
+  .btn{
+    display:inline-flex; align-items:center; gap:10px; cursor:pointer; border:none;
+    font-family:inherit; font-size:15.5px; font-weight:600; padding:15px 28px; border-radius:100px;
+    transition:transform .2s, box-shadow .2s, background .2s; text-align:center;
+  }
+  .btn-primary{ background:var(--accent); color:#fff; box-shadow:0 12px 30px -12px rgba(196,106,43,.7); }
+  .btn-primary:hover{ transform:translateY(-2px); box-shadow:0 18px 38px -12px rgba(196,106,43,.8); }
+  .btn-ghost{ background:transparent; color:var(--ink); border:1.5px solid var(--line); }
+  .btn-ghost:hover{ border-color:var(--ink); transform:translateY(-2px); }
+  .btn .arrow{ transition:transform .25s; }
+  .btn:hover .arrow{ transform:translateX(4px); }
+
+  /* ── Hero ── */
+  header.hero{ padding:64px 0 40px; position:relative; }
+  .hero-grid{ display:grid; grid-template-columns:1.05fr .95fr; gap:50px; align-items:center; }
+  @media(max-width:920px){ .hero-grid{ grid-template-columns:1fr; gap:36px; } }
+  .hero h1{ font-size:clamp(40px,5.6vw,72px); line-height:1.03; font-weight:500; letter-spacing:-.5px; margin:22px 0 0; }
+  .hero p.lead{ font-size:19px; color:var(--slate); margin:24px 0 0; max-width:30em; }
+  .hero-actions{ display:flex; gap:14px; margin-top:34px; flex-wrap:wrap; }
+  .trust-row{ display:flex; align-items:center; gap:18px; margin-top:30px; color:var(--muted); font-size:13.5px; flex-wrap:wrap; }
+  .trust-row .pill{ display:inline-flex; align-items:center; gap:7px; }
+  .trust-row .pill b{ color:var(--ink); font-weight:600; }
+  .dot{ width:6px; height:6px; border-radius:50%; background:var(--accent); display:inline-block; }
+
+  /* ── Hero visual : ecosystem orbit ── */
+  .orbit-stage{
+    position:relative; aspect-ratio:1/1; max-width:460px; margin:0 auto; width:100%;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .orbit-ring{ position:absolute; border:1px solid var(--line); border-radius:50%; }
+  .orbit-ring.r1{ inset:6%; } .orbit-ring.r2{ inset:22%; } .orbit-ring.r3{ inset:38%; }
+  .orbit-core{
+    position:relative; z-index:3; width:40%; aspect-ratio:1; border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, #20304d, #131d30);
+    box-shadow:0 24px 60px -22px rgba(24,35,56,.7), inset 0 1px 0 rgba(255,255,255,.12);
+    display:flex; flex-direction:column; align-items:center; justify-content:center; color:#fff; text-align:center;
+  }
+  .orbit-core .ring-badge{ width:54px; height:54px; border-radius:50%; border:5px solid var(--accent); box-shadow:0 0 0 6px rgba(196,106,43,.15); margin-bottom:12px; }
+  .orbit-core small{ font-size:10.5px; letter-spacing:.18em; text-transform:uppercase; opacity:.7; }
+  .orbit-core strong{ font-family:'Fraunces',serif; font-weight:600; font-size:19px; }
+  .node{
+    position:absolute; z-index:4; background:var(--card); border:1px solid var(--line);
+    border-radius:14px; padding:10px 14px; box-shadow:var(--shadow-sm); text-align:left;
+    display:flex; align-items:center; gap:10px; animation:floaty 7s ease-in-out infinite;
+  }
+  .node .ic{ width:30px; height:30px; border-radius:8px; background:#fbf1e8; display:grid; place-items:center; font-size:15px; }
+  .node b{ font-size:13px; font-weight:600; display:block; line-height:1.2; }
+  .node span{ font-size:11px; color:var(--muted); }
+  .node.n1{ top:2%; left:50%; transform:translateX(-50%); animation-delay:0s; }
+  .node.n2{ top:34%; right:-4%; animation-delay:1.2s; }
+  .node.n3{ bottom:6%; right:6%; animation-delay:2.4s; }
+  .node.n4{ bottom:6%; left:6%; animation-delay:3.0s; }
+  .node.n5{ top:34%; left:-4%; animation-delay:1.8s; }
+  @keyframes floaty{ 0%,100%{ transform:translateY(0) translateX(var(--tx,0)); } 50%{ transform:translateY(-9px) translateX(var(--tx,0)); } }
+  .node.n1{ --tx:-50%; }
+  @media(max-width:520px){ .node span{ display:none; } .node{ padding:8px 10px; } }
+
+  /* ── Section scaffolding ── */
+  section{ padding:74px 0; position:relative; }
+  .section-head{ max-width:42rem; }
+  .section-head.center{ margin:0 auto; text-align:center; }
+  h2.title{ font-size:clamp(30px,4vw,48px); font-weight:500; line-height:1.08; letter-spacing:-.4px; margin-top:18px; }
+  .section-head p{ color:var(--slate); font-size:18px; margin-top:18px; }
+
+  /* ── Story / relationship band ── */
+  .band{ background:linear-gradient(180deg, #fff, #fbfbfe); border-top:1px solid var(--line-2); border-bottom:1px solid var(--line-2); }
+  .story-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-top:48px; }
+  @media(max-width:860px){ .story-grid{ grid-template-columns:1fr; } }
+  .story-card{ background:var(--card); border:1px solid var(--line); border-radius:18px; padding:28px; box-shadow:var(--shadow-sm); }
+  .story-card .num{ font-family:'Fraunces',serif; font-size:14px; color:var(--accent); font-weight:600; letter-spacing:.05em; }
+  .story-card h3{ font-family:'Fraunces',serif; font-weight:500; font-size:22px; margin:14px 0 10px; }
+  .story-card p{ color:var(--slate); font-size:15.5px; }
+
+  /* ── Pull insight ── */
+  .insight{ text-align:center; max-width:48rem; margin:0 auto; }
+  .insight .big{ font-size:clamp(28px,3.6vw,42px); font-weight:500; line-height:1.22; letter-spacing:-.3px; }
+  .insight .big .em{ white-space:nowrap; }
+
+  /* ── Feature cards (white grid like screenshot) ── */
+  .cards4{ display:grid; grid-template-columns:repeat(4,1fr); gap:18px; margin-top:50px; }
+  @media(max-width:980px){ .cards4{ grid-template-columns:repeat(2,1fr); } }
+  @media(max-width:540px){ .cards4{ grid-template-columns:1fr; } }
+  .icard{ background:var(--card); border:1px solid var(--line); border-radius:16px; padding:24px 22px; box-shadow:var(--shadow-sm); }
+  .icard .ttl{ display:flex; align-items:center; gap:9px; font-weight:600; font-size:16px; margin-bottom:10px; }
+  .icard .ttl .d{ width:9px; height:9px; border-radius:50%; background:var(--accent); flex:none; }
+  .icard p{ color:var(--slate); font-size:14.5px; }
+
+  /* ── Trust / science split ── */
+  .split{ display:grid; grid-template-columns:1fr 1fr; gap:54px; align-items:center; }
+  @media(max-width:900px){ .split{ grid-template-columns:1fr; gap:34px; } }
+  .stat-stack{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .stat{ background:var(--card); border:1px solid var(--line); border-radius:16px; padding:22px; box-shadow:var(--shadow-sm); }
+  .stat .v{ font-family:'Fraunces',serif; font-size:38px; font-weight:600; line-height:1; }
+  .stat .v .u{ font-size:18px; color:var(--accent); }
+  .stat .k{ color:var(--muted); font-size:13px; margin-top:8px; }
+  .checklist{ list-style:none; margin-top:26px; display:grid; gap:14px; }
+  .checklist li{ display:flex; gap:13px; font-size:15.5px; color:var(--ink-soft); }
+  .checklist .ck{ flex:none; width:24px; height:24px; border-radius:50%; background:#fbf1e8; color:var(--accent); display:grid; place-items:center; font-size:13px; font-weight:700; margin-top:1px; }
+
+  /* ── Loop ── */
+  .loop-track{ display:grid; grid-template-columns:repeat(5,1fr); gap:14px; margin-top:48px; position:relative; }
+  @media(max-width:900px){ .loop-track{ grid-template-columns:repeat(2,1fr); } }
+  @media(max-width:520px){ .loop-track{ grid-template-columns:1fr; } }
+  .loop-step{ background:var(--card); border:1px solid var(--line); border-radius:16px; padding:22px 20px; box-shadow:var(--shadow-sm); position:relative; }
+  .loop-step .s{ font-family:'Fraunces',serif; color:var(--accent); font-size:13px; font-weight:600; }
+  .loop-step h4{ font-size:17px; font-weight:600; margin:8px 0 8px; }
+  .loop-step p{ font-size:14px; color:var(--slate); }
+
+  /* ── FAQ ── */
+  .faq{ max-width:780px; margin:44px auto 0; }
+  .qa{ border-bottom:1px solid var(--line); }
+  .qa button{ width:100%; background:none; border:none; cursor:pointer; font-family:inherit; text-align:left;
+    display:flex; justify-content:space-between; align-items:center; gap:16px; padding:24px 4px; color:var(--ink); font-size:18px; font-weight:500; }
+  .qa .ic{ flex:none; width:30px; height:30px; border-radius:50%; border:1.5px solid var(--line); display:grid; place-items:center; font-size:18px; transition:transform .3s, background .3s, color .3s; color:var(--accent); }
+  .qa.open .ic{ transform:rotate(45deg); background:var(--accent); color:#fff; border-color:var(--accent); }
+  .qa .body{ max-height:0; overflow:hidden; transition:max-height .35s ease; }
+  .qa .body p{ padding:0 4px 24px; color:var(--slate); font-size:15.5px; max-width:62ch; }
+
+  /* ── Final CTA ── */
+  .cta-final{ background:linear-gradient(160deg,#16233e,#0f1830); border-radius:30px; padding:64px 48px; text-align:center; color:#fff; position:relative; overflow:hidden; }
+  .cta-final::after{ content:""; position:absolute; width:380px; height:380px; border-radius:50%; right:-90px; top:-120px;
+    background:radial-gradient(circle, rgba(223,138,69,.35), rgba(223,138,69,0) 70%); }
+  .cta-final h2{ font-family:'Fraunces',serif; font-weight:500; font-size:clamp(30px,4vw,46px); line-height:1.1; position:relative; }
+  .cta-final p{ color:#c7cedd; font-size:18px; margin:18px auto 0; max-width:34em; position:relative; }
+  .cta-final .hero-actions{ justify-content:center; position:relative; }
+  .cta-final .btn-ghost{ color:#fff; border-color:rgba(255,255,255,.28); }
+  .cta-final .btn-ghost:hover{ border-color:#fff; }
+  .cta-final .fine{ color:#8b95ac; font-size:13px; margin-top:22px; position:relative; }
+
+  /* ── Footer ── */
+  footer{ padding:50px 0 60px; border-top:1px solid var(--line); margin-top:74px; }
+  .foot-grid{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; color:var(--muted); font-size:13.5px; }
+  .foot-links{ display:flex; gap:22px; flex-wrap:wrap; }
+  .foot-links a:hover{ color:var(--ink); }
+
+  /* ── Reveal animation ── */
+  .reveal{ opacity:0; transform:translateY(26px); transition:opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in{ opacity:1; transform:none; }
+  .reveal.d1{ transition-delay:.08s; } .reveal.d2{ transition-delay:.16s; } .reveal.d3{ transition-delay:.24s; } .reveal.d4{ transition-delay:.32s; }
+  @media(prefers-reduced-motion:reduce){ .reveal{ opacity:1; transform:none; } .node{ animation:none; } html{ scroll-behavior:auto; } }
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav id="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top"><span class="mark"></span>VeSync <span style="opacity:.45;font-weight:400">Energy OS</span></a>
+    <div class="nav-links">
+      <a href="#story">The room &amp; the sleep</a>
+      <a href="#gap">From a number to a move</a>
+      <a href="#science">The science</a>
+      <a href="#loop">A real night</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <a class="nav-cta" href="#cta">Explore the ring →</a>
+  </div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<header class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow reveal">From the makers of Levoit</span>
+      <h1 class="serif reveal d1">Good sleep score.<br><span class="em">Still exhausted?</span></h1>
+      <p class="lead reveal d2">For years, your Levoit has quietly cared for the room you sleep in — the air, the humidity, the climate. But a clean room and a good score can still hand you a heavy morning. Energy OS is the next layer: a sleep system that reads the night your body actually had, and turns it into one clear move for the day in front of you.</p>
+      <div class="hero-actions reveal d3">
+        <a class="btn btn-primary" href="#cta">Meet Energy OS <span class="arrow">→</span></a>
+        <a class="btn btn-ghost" href="#gap">Why the score isn't enough</a>
+      </div>
+      <div class="trust-row reveal d4">
+        <span class="pill"><span class="dot"></span>The bedroom you already trust, now <b>reading the sleep in it</b></span>
+        <span class="pill"><span class="dot"></span>Built on <b>years</b> of sleep &amp; sensing R&amp;D</span>
+      </div>
+    </div>
+
+    <!-- Ecosystem orbit -->
+    <div class="reveal d2">
+      <div class="orbit-stage" aria-hidden="true">
+        <div class="orbit-ring r1"></div>
+        <div class="orbit-ring r2"></div>
+        <div class="orbit-ring r3"></div>
+        <div class="orbit-core">
+          <div class="ring-badge"></div>
+          <small>Energy OS</small>
+          <strong>Your sleep</strong>
+        </div>
+        <div class="node n1"><div class="ic">💨</div><div><b>Air</b><span>clean for the night</span></div></div>
+        <div class="node n2"><div class="ic">💧</div><div><b>Humidity</b><span>kept in range</span></div></div>
+        <div class="node n3"><div class="ic">🌡️</div><div><b>Climate</b><span>cool to sleep in</span></div></div>
+        <div class="node n4"><div class="ic">💍</div><div><b>The Ring</b><span>reads your night</span></div></div>
+        <div class="node n5"><div class="ic">🌙</div><div><b>Light</b><span>tuned to dusk</span></div></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ══ STORY / RELATIONSHIP ══ -->
+<section class="band" id="story">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow slate">Energy OS is the system · the Ring is how it reads you</span>
+      <h2 class="title serif">We never stopped at clean air. Now we read the <span class="em">sleep that happens in it.</span></h2>
+      <p>A Levoit was never really about the device. It was about you, sleeping easier in a room that quietly takes care of itself. Energy OS extends that care across the bedroom door — from the room you sleep in, to the night you actually have inside it.</p>
+    </div>
+    <div class="story-grid">
+      <div class="story-card reveal">
+        <div class="num">01 — The room</div>
+        <h3 class="serif">Set the stage</h3>
+        <p>Stale air, dryness, the wrong temperature. For years your Levoit handled the things in the room that quietly work against good sleep — silently, every night.</p>
+      </div>
+      <div class="story-card reveal d1">
+        <div class="num">02 — The gap</div>
+        <h3 class="serif">A perfect room is only half</h3>
+        <p>The right room sets the stage. But two people in the same bedroom wake up in completely different shape — because the other half of sleep happens inside the body, where no purifier can reach.</p>
+      </div>
+      <div class="story-card reveal d2">
+        <div class="num">03 — The night</div>
+        <h3 class="serif">Read what happened</h3>
+        <p>The Ring reads that second half — when you fell asleep, the 3 a.m. fragmentation, the deep sleep that landed too late, the nervous system that never switched off — and Energy OS turns it into your next move.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ THE MISSING LAYER (insight) ══ -->
+<section id="gap">
+  <div class="wrap">
+    <div class="insight reveal">
+      <span class="eyebrow">From a number to a next move</span>
+      <p class="big serif" style="margin-top:20px">A sleep score answers one question well:<br><span class="em">did you spend enough time asleep?</span></p>
+      <p style="color:var(--slate); font-size:18px; max-width:42em; margin:24px auto 0;">That's worth knowing. It just isn't the question your morning is asking. Your room is clean, your hours look fine — and you still wake up heavy. Energy OS reads what the score can't, and turns it into a decision for the day in front of you.</p>
+    </div>
+    <div class="cards4">
+      <div class="icard reveal"><div class="ttl"><span class="d"></span>The 3 a.m. fragmentation</div><p>The micro-wakings that never quite woke you — invisible to a score, quietly shredding the recovery underneath.</p></div>
+      <div class="icard reveal d1"><div class="ttl"><span class="d"></span>Deep sleep, mistimed</div><p>The same hours landing in the wrong part of your night restore you far less than the clock suggests.</p></div>
+      <div class="icard reveal d2"><div class="ttl"><span class="d"></span>A nervous system still on</div><p>Your body can stay switched on long after your eyes close — present for the hours, absent for the rest.</p></div>
+      <div class="icard reveal d3"><div class="ttl"><span class="d"></span>What today is asking</div><p>The early start, the hard conversation, the second short night in a row. Readiness only means something against the day ahead.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TRUST / SCIENCE ══ -->
+<section class="band" id="science">
+  <div class="wrap split">
+    <div class="reveal">
+      <span class="eyebrow slate">Why you can trust this one too</span>
+      <h2 class="title serif">Not a pivot. A layer we've been building <span class="em">for years.</span></h2>
+      <p style="color:var(--slate); font-size:18px; margin-top:18px;">VeSync didn't bolt a health feature onto an app. Energy OS is the result of years of work in sensing, signal science, and human physiology — held back until it was good enough to put the VeSync name on.</p>
+      <ul class="checklist">
+        <li><span class="ck">✓</span><span><b>Medical-grade signal sensing.</b> The ring reads electrodermal activity (EDA) — the same nervous-system signal used in clinical stress research — directly from your finger.</span></li>
+        <li><span class="ck">✓</span><span><b>Years in development.</b> Validated against sleep-lab references and refined across real nights, in real homes, before launch.</span></li>
+        <li><span class="ck">✓</span><span><b>One ecosystem, one account.</b> It speaks to the VeSync devices you already own — no new app to learn, no second login.</span></li>
+        <li><span class="ck">✓</span><span><b>Privacy by design.</b> Your physiology is yours. Encrypted, never sold, and you can export or delete it whenever you like.</span></li>
+      </ul>
+    </div>
+    <div class="reveal d1">
+      <div class="stat-stack">
+        <div class="stat"><div class="v">7<span class="u">+</span></div><div class="k">years of sensing R&amp;D behind the ring</div></div>
+        <div class="stat"><div class="v">100<span class="u">Hz</span></div><div class="k">nervous-system sampling, all night</div></div>
+        <div class="stat"><div class="v">1</div><div class="k">clear decision each morning — not a wall of charts</div></div>
+        <div class="stat"><div class="v">5<span class="u">d</span></div><div class="k">battery, so it's never the thing you forgot</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ LOOP ══ -->
+<section id="loop">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow">A real night, start to morning</span>
+      <h2 class="title serif">We don't grade the night.<br>We tell you <span class="em">what happened.</span></h2>
+      <p style="margin-left:auto;margin-right:auto">The same quiet, do-it-for-you logic your Levoit runs on — now applied to your sleep. Five steps, every night, mostly invisible.</p>
+    </div>
+    <div class="loop-track">
+      <div class="loop-step reveal"><div class="s">Detect</div><h4>Reads the night</h4><p>EDA stress-arousal plus consistency, deep-vs-light, HRV and efficiency — read straight from your nervous system.</p></div>
+      <div class="loop-step reveal d1"><div class="s">Decide</div><h4>Names what happened</h4><p>Irregular sleep · couldn't fall asleep · fragmented · low recovery — in plain language, not a number out of 100.</p></div>
+      <div class="loop-step reveal d2"><div class="s">Act</div><h4>One move</h4><p>A single wind-down tonight or morning activation tomorrow — and a nudge to the right setting on your VeSync devices.</p></div>
+      <div class="loop-step reveal d3"><div class="s">Confirm</div><h4>Checks it landed</h4><p>Tonight it looks at whether the move actually worked — so the guidance is earned, never generic.</p></div>
+      <div class="loop-step reveal d4"><div class="s">Learn</div><h4>Gets to know you</h4><p>Every night sharpens how it reads your sleep — and how the room around you can help it.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ BUILT FOR ══ -->
+<section>
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow slate">Not another number to be awake about</span>
+      <h2 class="title serif">Built for people who need their <span class="em">days</span> — not just their data.</h2>
+      <p style="margin-left:auto;margin-right:auto">You don't want a wall of charts at 7 a.m. You want to know what last night did to today, and the one thing worth doing about it. That's the whole product.</p>
+    </div>
+    <div class="cards4">
+      <div class="icard reveal"><div class="ttl"><span class="d"></span>One move, not 40 metrics</div><p>Most mornings, a single decision — wind down earlier, ease into the day. The dashboard is there if you want it; you rarely need it.</p></div>
+      <div class="icard reveal d1"><div class="ttl"><span class="d"></span>Plain language</div><p>"You couldn't switch off." "Your night was fragmented." Words that match how you actually feel — not a score that argues with you.</p></div>
+      <div class="icard reveal d2"><div class="ttl"><span class="d"></span>It works with your home</div><p>The guidance reaches the VeSync devices you already own, nudging air, humidity and light toward the night your body needs.</p></div>
+      <div class="icard reveal d3"><div class="ttl"><span class="d"></span>More data won't fix it</div><p>A tired morning was never a measurement problem. Energy OS exists to turn the reading into a result — a better day, on purpose.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FAQ ══ -->
+<section class="band" id="faq">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow slate">The questions you're already asking</span>
+      <h2 class="title serif">Accuracy, anxiety, <span class="em">cost.</span></h2>
+    </div>
+    <div class="faq">
+      <div class="qa reveal">
+        <button><span>How accurate is it, really?</span><span class="ic">+</span></button>
+        <div class="body"><p>The Ring measures electrodermal activity (EDA) directly from your finger — one of the best places on the body to read nervous-system signals, and the same signal used in clinical stress research. It's been validated against sleep-lab references and refined across years of real nights, in real homes, before it ever carried the VeSync name.</p></div>
+      </div>
+      <div class="qa reveal">
+        <button><span>Do I need to replace my Levoit devices?</span><span class="ic">+</span></button>
+        <div class="body"><p>No. Energy OS is a new layer, not a forced upgrade. The Ring works on its own — and if you own VeSync devices, it simply gets smarter, coordinating your air, humidity and light around what your body needs that night. Same account, same app.</p></div>
+      </div>
+      <div class="qa reveal">
+        <button><span>Will tracking my sleep just make me anxious?</span><span class="ic">+</span></button>
+        <div class="body"><p>The opposite — that's the entire design. Energy OS is deliberately <em>not</em> a dashboard of numbers to be awake about. Most mornings it surfaces one decision and stays quiet otherwise. It's built to take sleep off your mind, not add a new thing to obsess over.</p></div>
+      </div>
+      <div class="qa reveal">
+        <button><span>What does it cost — is there a subscription?</span><span class="ic">+</span></button>
+        <div class="body"><p>Reading your own body shouldn't be rented back to you. The core guidance is included with the Ring — no subscription to see why you woke up tired. Every Ring also comes with a 30-night home trial: sleep with it for a month, and if your mornings don't change, send it back for a full refund.</p></div>
+      </div>
+      <div class="qa reveal">
+        <button><span>What happens to my sleep data?</span><span class="ic">+</span></button>
+        <div class="body"><p>It's encrypted, tied to your existing VeSync account, and never sold. You can export everything or delete it permanently at any time. Your physiology belongs to you — full stop.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FINAL CTA ══ -->
+<section id="cta">
+  <div class="wrap">
+    <div class="cta-final reveal">
+      <h2>Stop scoring your sleep.<br>Start using it.</h2>
+      <p>You already let us care for the room you sleep in. Add the layer that reads the night inside it — and hands you one move for the day in front of you.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#">Explore the Energy OS ring <span class="arrow">→</span></a>
+        <a class="btn btn-ghost" href="#science">See the science</a>
+      </div>
+      <p class="fine">Works with your existing VeSync account · 30-night home trial · No subscription for core guidance</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="wrap foot-grid">
+    <div><span class="brand" style="font-size:17px"><span class="mark"></span>VeSync Energy OS</span></div>
+    <div class="foot-links">
+      <a href="#story">The room &amp; the sleep</a>
+      <a href="#gap">From a number to a move</a>
+      <a href="#science">Science</a>
+      <a href="#loop">A real night</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <div>© 2026 VeSync · Makers of Levoit</div>
+  </div>
+</footer>
+
+<script>
+  // Nav shadow on scroll
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 12);
+  onScroll(); window.addEventListener('scroll', onScroll, { passive:true });
+
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold:.14, rootMargin:'0px 0px -8% 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  // Failsafe: never leave content hidden if the observer is slow or unsupported
+  window.addEventListener('load', () => {
+    document.querySelectorAll('.reveal:not(.in)').forEach(el => {
+      if (el.getBoundingClientRect().top < window.innerHeight * 1.1) el.classList.add('in');
+    });
+  });
+  setTimeout(() => document.querySelectorAll('.reveal:not(.in)').forEach(el => el.classList.add('in')), 2500);
+
+  // FAQ accordion
+  document.querySelectorAll('.qa button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const qa = btn.parentElement;
+      const body = qa.querySelector('.body');
+      const open = qa.classList.contains('open');
+      document.querySelectorAll('.qa.open').forEach(o => { o.classList.remove('open'); o.querySelector('.body').style.maxHeight = null; });
+      if (!open){ qa.classList.add('open'); body.style.maxHeight = body.scrollHeight + 'px'; }
+    });
+  });
+</script>
+</body>
+</html>
